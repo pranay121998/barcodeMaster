@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "barcode-testing-89170",
+    "staging": "barcode-testing-89170"
+  },
+  "targets": {}
+}

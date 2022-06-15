@@ -1,0 +1,108 @@
+/* .mysearch {
+  border-color: black;
+  border: 1px solid;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.mysearch input {
+  border-radius: 20px;
+  border: 0
+}
+
+.mysearch .input-group-text {
+  background-color: transparent !important;
+  border: 0 !important;
+} */
+
+/* .table-responsive {
+  overflow-y: scroll;
+  height: 400px;
+} */
+
+/* body {
+  overflow-y: scroll;
+} */
+
+/* body {
+  margin: 0;
+  font-family: "Roboto",
+    sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.mytable thead {
+  background: #9e9e9e !important;
+}
+
+:host ::ng-deep .mat-table thead {
+  background: #9e9e9e !important;
+  font-weight: 400;
+}
+
+:host ::ng-deep .mat-header-cell {
+  color: #212529 !important;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.modal-lg {
+  max-width: 1024px !important;
+}
+
+.mytable {
+  border-collapse: collapse !important;
+  padding: 0 !important;
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+
+}
+
+.mytd td {
+  display: table-cell !important;
+  vertical-align: top !important;
+}
+
+.mytd td {
+  height: 100% !important;
+} */
+
+/* :host ::ng-deep td.mat-cell {
+  row padding
+  padding: 16px 0;
+  row border
+  border-right: 2px solid #dee2e6;
+} */
+
+/* :host ::ng-deep th.mat-header-cell {
+  row padding */
+  /* padding: 16px 0;
+  /* row border
+  border-right: 1px solid #dee2e6;
+  padding-right: 2px;
+  padding-left: 2px;
+} */
+
+/* 
+:host ::ng-deep td.mat-cell:last-child {
+  row border
+  border-right: none;
+} */
+
+/* :host ::ng-deep th.mat-header-cell:last-child {
+  row border
+  border-right: none;
+} */
+
+.table100-head tr th{
+  font-family: OpenSans-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
+

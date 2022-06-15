@@ -1,0 +1,108 @@
+/* html,
+body {
+  background-color: #ddacbe !important;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto",
+    sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.form-group input,
+textarea,
+select {
+  border-color: #000
+} */
+/* 
+input[type=text]:disabled,
+input[type=date]:disabled,
+textarea :disabled,
+input[type=select]:disabled {
+  background: #cedcda;
+
+}
+
+.custom-select:disabled {
+  background-color: #cedcda;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #cedcda;
+  opacity: 1;
+}
+
+.form-control {
+  font-size: 0.9rem !important
+}
+
+.align-left {
+  margin-left: -12px !important;
+}
+
+.textarea-pl {
+  padding-right: 31px !important;
+}
+
+.textarea-ml {
+  margin-left: -20px !important;
+}
+
+.text-pl {
+  padding-left: 3px !important;
+}
+
+.text-ml {
+  margin-left: -21px !important;
+}
+
+.bcode-left {
+  margin-left: -69px !important;
+}
+
+.myleftpadding>th>ul {
+  padding-left: 0 !important;
+}
+
+.myleftpadding>td>ul {
+  padding-left: 0 !important;
+}
+
+.table-responsive {
+  overflow-y: hidden;
+
+} */
+
+
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+/* 
+.modal-lg {
+  max-width: 1024px;
+}
+
+.mytable {
+  border-collapse: collapse !important;
+  padding: 0 !important;
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+
+}
+
+.mytd td {
+  display: table-cell !important;
+  vertical-align: top !important;
+}
+
+.mytd td {
+  height: 100% !important;
+} */

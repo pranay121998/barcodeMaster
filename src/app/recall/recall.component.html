@@ -1,0 +1,274 @@
+<body data-spy="scroll" data-target=".fixed-top">
+  <ul class="nav justify-content-center" style="background-color: bisque">
+    <li class="nav-item" style="color: #00bfd8; font-size: 18px">
+      {{ title }}
+    </li>
+  </ul>
+
+  <div class="container" style="margin-top: 1rem">
+ 
+    <div style="
+        margin-right: 1rem;
+        margin-top: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+      ">
+      <button class="btn-solid-reg page-scroll" (click)="goBack()">Back</button>
+    </div>
+    <br /><br />
+    <!-- <form [formGroup]="recallForm">
+      <div class="row mt-2">
+        <div class="col-lg-12">
+          <button *ngIf="this.recallForm.value.barcodes.length === 0" class="btn-solid-reg" (click)="addBarcode()"
+            type="button">
+            Add
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6" formArrayName="barcodes">
+          <div *ngFor="let quantity of barcodes().controls; let i = index" [formGroupName]="i">
+            <div class="row mt-2">
+              <div class="col-md-7">
+                <span class="input">
+                  <input type="text" (focus)="addBarcode()" formControlName="barcode" class="form-control"
+                    placeholder="Barcode No." />
+                </span>
+              </div>
+              <div class="col-md-5">
+                <button (click)="removeBarcode(i)" class="btn-solid-reg">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <button class="btn-solid-reg mt-2" type="button"
+                *ngIf="!refresh && this.recallForm.value.barcodes.length !== 0" (click)="recall()">
+                Recall
+              </button>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <button class="btn-solid-reg mt-2" type="button" *ngIf="refresh" (click)="cancel()">
+                Refresh
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+         
+          <div class="table-responsive" *ngIf="isTable && this.recallForm.value.barcodes.length !== 0">
+            <div class="row mt-2" style="margin-left:3px;margin-bottom: 10px;">
+              <button class="btn-solid-reg" type="button" (click)="exportElmToExcel()">
+                Export
+              </button>
+            </div> 
+            <table #userTable class="table table-striped">
+              <thead class="thead-grey">
+                <tr style="color: #fff">
+                  <th scope="col">Barcode No</th>
+                  <th scope="col">Recall</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let barcode of inTable">
+                <tr *ngIf="barcode.isSame === true">
+                  <td>{{ barcode.barcode }}</td>
+                  <td id="color1" style="color: #fff; background-color: rgb(69, 255, 12)">
+                    {{ barcode.recall }}
+                  </td>
+                  <td id="color2" style="color: #fff; background-color: rgb(69, 255, 12)">
+                    {{ barcode.status }}
+                  </td>
+                </tr>
+                <tr *ngIf="barcode.isSame === false">
+                  <td>{{ barcode.barcode }}</td>
+                  <td id="color1" style="color: #fff; background-color: red">
+                    {{ barcode.recall }}
+                  </td>
+                  <td id="color2" style="color: #fff; background-color: red">
+                    {{ barcode.status }}
+                  </td>
+                </tr>
+                <tr *ngIf="barcode.status === 'Not Found'">
+                  <td>{{ barcode.barcode }}</td>
+                  <td id="color1" style="color: #fff; background-color: red">
+                    {{ barcode.recall }}
+                  </td>
+                  <td id="color2" style="color: #fff; background-color: red">
+                    {{ barcode.status }}
+                  </td>
+                </tr>
+              </tbody>
+             
+            </table>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+          
+        </div>
+      </div>
+
+    </form> -->
+    <div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 "></div>
+				<div class="form-group col-md-6  ">
+					<label for="span">Bulk Upload:</label>
+					<span class="input">
+						<input type="file" class="file form-control" accept=".csv" (change)="handleFileSelect($event)"
+							#focus id="focus"><!---->
+					</span>
+					<div class="container" style="margin-top: 4px;height: 50px;
+					position: relative;
+					">
+						<div style="position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);">
+							<button *ngIf="hideOut" class="btn-solid-reg page-scroll" type="button"
+								(click)="uploadOut()" style="display:inline-block;position: relative;">Upload
+								Outward</button>
+						
+							<button *ngIf="hideIn" class="btn-solid-reg page-scroll" type="button" (click)="uploadIn()"
+								[attr.disabled]="setIn === false ? '' : null"
+								style="display:inline-block; position: relative;">Upload
+								Inward</button>
+						</div>
+					</div>
+					<div class="container" style="padding-left: .2rem;margin-top: 8px;height: 50px;
+					position: relative;
+					">
+						<div class="" style="margin: 0;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);">
+							<!-- <button *ngIf="hideCancel" class="btn-solid-reg page-scroll" type="button"
+								(click)="checkIt()" style="display:inline-block;margin-right: .5rem;
+							  position: relative;">Check</button> -->
+                <button class="btn-solid-reg mt-2" type="button"
+                *ngIf="!refresh && this.recallForm.value.barcodes.length !== 0 ||hideCancel" (click)="recall()">
+                Recall
+              </button>
+							<!-- </div>
+						<div class="col-md-4" style="background-color: crimson;"> -->
+							<button *ngIf="refreshBtn" class="btn-solid-reg page-scroll" type="button"
+								(click)="cancel()" style="display:inline-block; position: relative;">Refresh</button>
+							<!-- </div>
+						<div class="col-md-4" style="background-color: darkcyan;"> -->
+							<button *ngIf="hideCancel" class="btn-solid-reg page-scroll" type="button"
+								(click)="cancel()" style="display:inline-block; position: relative;">Cancel</button>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+
+				<!-- <div class="col-md-6" >
+		<div class="form-group">
+		  <label for="exampleFormControlFile1">Approval PDF for Outward:</label>
+		 <span class="input"> 
+		  <input type="file" class="form-control" (change)="onFileChanged($event)" accept=".pdf" />
+		 </span> 
+		  <div class="progress">
+			<div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+			  [style.width]="(this.api.uploadProgress| async) + '%'"
+			  [attr.aria-valuenow]="(this.api.uploadProgress| async)" aria-valuemin="0" aria-valuemax="100">
+			  {{this.api.uploadProgress | async}}</div>
+		  </div>
+		</div>
+	  </div> -->
+				<!-- <button class="mybtn btn-purple mb-4" type="button" (click)="ConvertCSVtoJSON()">Convert CSV to JSON</button> -->
+			</div>
+		</div>
+  </div>
+
+  <div class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+          <table>
+            <thead>
+              <tr style="color: #fff;">
+                <!-- <th scope="col">Barcode No</th> -->
+                <!-- <th scope="col">Lan No</th>
+                <th scope="col">Doc Type</th>
+                <th scope="col">Inward Date</th>
+                <th scope="col">Location</th>
+                <th scope="col">Inward Remarks</th>
+                <th scope="col">Out Date</th>
+                <th scope="col">Requested By</th>
+                <th scope="col">Retrieval Type</th>
+                <th scope="col">Sub Retrieval Type</th>
+                <th scope="col">Approved Type</th>
+                <th scope="col">Outward Remarks</th> -->
+                <!-- <th scope="col">Type</th>
+                <th scope="col">Status</th> -->
+                <th scope="col">Barcode No</th>
+                <th scope="col">Recall</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <!-- <tbody>
+              <tr *ngFor="let get of test; let i = index"> -->
+                <!-- <th scope="row">{{get.barcode}}</th> -->
+                <!-- <td>{{get.lanno}}</td>
+                <td>{{get.docType}}</td>
+                <td>{{get.inwardDate}}</td>
+                <td>{{get.location}}</td>
+                <td>{{get.remarksInward}}</td>
+                <td>{{get.outDate}}</td>
+                <td>{{get.requestedBy}}</td>
+                <td>{{get.retrievalType}}</td>
+                <td>{{get.subRetrivalType}}</td>
+                <td>{{get.approvalType}}</td>
+                <td>{{get.remarkOutward}}</td> -->
+                <!-- <td>{{get.type}}</td>
+                <td>
+                  {{get.status}}
+                  <a matTooltip="{{get.info}}">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  </a>
+                </td> -->
+                <tbody *ngFor="let barcode of inTable">
+                  <tr *ngIf="barcode.isSame === true">
+                    <td>{{ barcode.barcode }}</td>
+                    <td id="color1" style="color: #fff; background-color: rgb(69, 255, 12)">
+                      {{ barcode.recall }}
+                    </td>
+                    <td id="color2" style="color: #fff; background-color: rgb(69, 255, 12)">
+                      {{ barcode.status }}
+                    </td>
+                  </tr>
+                  <tr *ngIf="barcode.isSame === false">
+                    <td>{{ barcode.barcode }}</td>
+                    <td id="color1" style="color: #fff; background-color: red">
+                      {{ barcode.recall }}
+                    </td>
+                    <td id="color2" style="color: #fff; background-color: red">
+                      {{ barcode.status }}
+                    </td>
+                  </tr>
+                  <tr *ngIf="barcode.status === 'Not Found'">
+                    <td>{{ barcode.barcode }}</td>
+                    <td id="color1" style="color: #fff; background-color: red">
+                      {{ barcode.recall }}
+                    </td>
+                    <td id="color2" style="color: #fff; background-color: red">
+                      {{ barcode.status }}
+                    </td>
+                  </tr>
+                </tbody>
+              <!-- </tr>
+            </tbody> -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

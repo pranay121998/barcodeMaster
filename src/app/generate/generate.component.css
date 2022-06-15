@@ -1,0 +1,54 @@
+/* body {
+  overflow-y: scroll;
+} */
+
+/* .pdfSink::after {
+  /* works for generated content  */
+/*  content: 'i == 'counter(i); */
+/* does not work anywhere else */
+/* background: hsl(calc(counter(i) * 10), 50%, 50%);
+} */
+
+/* @media print {
+  body {
+    margin-left: 5px; */
+    /* height: 100%; */
+    /* page-break-inside: avoid;
+  }
+
+  .row {
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+} */
+
+/* canvas {
+  width: 745px;
+  height: 135px;
+  padding-top: 31px;
+}
+
+.pad-left {
+  padding-left: 85px !important;
+} */
+
+/* .container1{
+  background-color: chartreuse; height: 50px;
+            position: relative;
+            border: 3px solid green; 
+}
+
+.container2{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#button1{
+  display:inline-block; position: relative;background-color: coral;margin-right:.5rem;
+}
+.button2{
+  display:inline-block; position: relative;background-color: coral;
+} */

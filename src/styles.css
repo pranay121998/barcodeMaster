@@ -1,0 +1,102 @@
+/* body {
+  background-color: #ddacbe !important;
+  height: 100vh;
+  /* overflow-y: hidden; 
+} */
+
+/*Purple Button */
+/* .btn-purple {
+  color: #fff;
+  background-color: #a52653;
+  border-color: #472a34;
+}
+
+.mybtn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: .375rem .75rem;
+  /* font-size: 1rem; 
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.mybtn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+} */
+
+/* Search */
+/* .mysearch {
+  border-color: black;
+  border: 1px solid;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.mysearch input {
+  border-radius: 20px;
+  border: 0
+}
+
+.mysearch .input-group-text {
+  background-color: transparent !important;
+  border: 0 !important;
+}
+
+.searchR {
+  background-color: rgb(150 75 120 / 42%);
+} */
+
+
+/* Table */
+/* .thead-grey {
+  background-color: #9e9e9e !important;
+}
+
+.table {
+  background-color: #fff;
+}
+
+.table thead th {
+  border-color: #6d6c6c !important;
+} */
+
+/* Ul li */
+/* ul {
+  list-style-type: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+} */
+pdf-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(5px 5px 5px #222222);
+}
+
+textarea {
+    margin-top: 15px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.containerpdf{
+  position:absolute;
+}

@@ -1,0 +1,92 @@
+<body data-spy="scroll" data-target=".fixed-top">
+
+  <ul class="nav justify-content-center" style="background-color:bisque">
+
+    <li class="nav-item" style="color: #00bfd8;font-size: 18px;">
+      {{title}}
+    </li>
+
+
+  </ul>
+
+  <div style=" margin-right:1rem;margin-top: 20px; position: absolute;top: 0;right: 0">
+    <button class="btn-solid-reg mb-2" (click)="goBack()">Back</button>
+  </div><br>
+  <div class="container-fluid mt-3">
+
+    <ul *ngFor="let permission of permissions; let i = index">
+      <!-- <li>{{permission?.payload?.doc?.data()['permission']}} Request for {{permission?.payload?.doc?.data()['barcode']}}
+        </li> -->
+      <div class="row" *ngIf="permission.payload.doc.data()['email'] !== accessEmail">
+        <div class="col-sm-6">
+          <div class="alert alert-warning" role="alert">
+            <strong>{{permission.payload.doc.data()['email']}}</strong> sent a
+            {{permission?.payload?.doc?.data()['permission']}} Request
+            for
+            {{permission?.payload?.doc?.data()['barcode']}}
+            <div *ngIf="permission?.payload?.doc?.data()['log']">
+              <div *ngIf="permission?.payload?.doc?.data()['log']['type'] === 'Inward'||'Reinward'">
+                <!-- <strong>Latest At</strong>:{{permission?.payload?.doc?.data()['updateAt']}}<br> -->
+                <strong>Inward Date</strong>: {{permission?.payload?.doc?.data()['log']['inwardDate']}} <br>
+                <strong>Location</strong>: {{permission?.payload?.doc?.data()['log']['location']}} <br>
+                <strong>Remarks Inward</strong>: {{permission?.payload?.doc?.data()['log']['remarksInward']}} <br>
+              </div>
+              <div *ngIf="permission?.payload?.doc?.data()['log']['type'] === 'outward'">
+                <!-- <strong>Latest At</strong>:{{permission?.payload?.doc?.data()['updateAt']}}<br> -->
+                <strong>OutDate</strong>: {{permission?.payload?.doc?.data()['log']['outDate']}} <br>
+                <strong>Approval Type</strong>: {{permission?.payload?.doc?.data()['log']['approvalType']}} <br>
+                <strong>Remark Outward</strong>: {{permission?.payload?.doc?.data()['log']['remarkOutward']}} <br>
+                <strong>Requested By</strong>: {{permission?.payload?.doc?.data()['log']['requestedBy']}} <br>
+                <strong>Retrieval Type</strong>: {{permission?.payload?.doc?.data()['log']['retrievalType']}} <br>
+                <strong>SubRetrival Type</strong>: {{permission?.payload?.doc?.data()['log']['subRetrivalType']}} <br>
+                <strong>Approval proof</strong>: <a
+                  href="{{permission?.payload?.doc?.data()['log']['fileurl']}}">File</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6" style="margin-top: 1rem;">
+          <div class="container" style="height: 50px;
+          position: relative;">
+            <div class="" style="margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);">
+              <button *ngIf="permission?.payload?.doc?.data()['permission'] === 'delete'" class="btn-solid-reg mt-1"
+                (click)="deleteBarcode(permission?.payload?.doc?.data()['barcode'],
+                permission?.payload?.doc?.id)" style="display:inline-block; position: relative;margin-right:.5rem;">Delete</button>
+            <!-- </div>
+            <div class="col-md-6"> -->
+             
+            <!-- </div>
+          </div> -->
+          <!-- <div class="row">
+            <div class="col-md-6"> -->
+              <button (click)="editIndex(permission?.payload?.doc?.data()['barcode'],
+                permission?.payload?.doc?.data()['log']['type'], permission?.payload?.doc?.data()['index'],
+                permission?.payload?.doc?.data()['log'], permission?.payload?.doc?.id)"
+                *ngIf="permission?.payload?.doc?.data()['permission'] === 'editLog'" class="btn-solid-reg " style="display:inline-block; position: relative;margin-right:.5rem; padding: 1rem 2.5rem 1rem 2.5rem;">Edit</button>
+            <!-- </div>
+            <div class="col-md-6"> -->
+              <button *ngIf="permission?.payload?.doc?.data()['permission'] === 'deleteLog'" class="btn-solid-reg "
+                (click)="deleteLog(permission?.payload?.doc?.data()['barcode'], permission?.payload?.doc?.id,
+                permission?.payload?.doc?.data()['log'])" style="display:inline-block; position: relative;margin-right:.5rem;">Delete</button>
+                
+                <button class="btn-solid-reg ml-2 mt-1" (click)="deleteRejected(permission?.payload?.doc?.data()['barcode'],permission?.payload?.doc?.id,
+                permission?.payload?.doc?.data()['permission'])" style="display:inline-block; position: relative;margin-right:.5rem;">Reject</button>
+              </div>
+          </div>
+
+        </div>
+      </div>
+
+    </ul>
+
+  </div>
+
+
+
+
+
+</body>

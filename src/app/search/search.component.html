@@ -1,0 +1,759 @@
+<div data-spy="scroll" data-target=".fixed-top">
+  <mat-spinner *ngIf="showSpinner"></mat-spinner>
+
+  <ul class="nav justify-content-center" style="background-color:bisque">
+    <li class="nav-item" style="color: #00bfd8; font-size: 18px;">
+      {{ title }}
+    </li>
+  </ul>
+  <div style="
+    padding-left: 11rem;
+    margin-top: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  ">
+    <button class="btn-solid-reg page-scroll" (click)="back()">Back</button>
+  </div>
+  <br /><br /><br />
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12"></div>
+    <!-- <div class="col-sm-2" style="background-color: darkblue;"></div> -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="container justify-content-center" style=" height: 50px;
+    position: relative;
+   ">
+        <div style="margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);">
+          <button  (click)="toggleNormal()" class="btn-solid-reg"
+            style=" display:inline-block;  position: relative;margin-right: .5rem;">
+            Show All Data
+          </button>
+          <!-- </div> 
+    <div class="col-md-4 col-sm-4" style="display: inline-block;"> -->
+          <button  (click)="toggleDate()" class="btn-solid-reg mr-2" style="display:inline-block;  position: relative;">
+            Date Range Filter
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
+    <!-- <div class="col-sm-2" style="background-color: darkblue;"></div> -->
+
+  </div>
+  <!-- <div class="row justify-content-center" >
+    <div class="col-sm-9"> -->
+  <!-- <div class="row justify-content-center"> -->
+
+  <!-- <div class="input-group mysearch mb-2" style="background-color: darkred;"> -->
+  <!-- <div class="input-group-prepend" style="background-color: crimson;">
+                   <div class="input-group-text"><label  class="input fa fa-search">
+                  </label> 
+                  </div> 
+                 </div> -->
+
+  <!-- <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom: 1rem;"> -->
+  <!-- <label  class=" fa fa-search"></label> -->
+  <!-- <div class=" col-lg-4 col-md-4 col-sm-4" style="display: inline-block;">  -->
+  <!-- <button (click)="toggleNormal()" class="btn-solid-reg" style=" display:inline-block;
+              float:none;
+              
+              ">
+                Show All Data -->
+  <!-- </button> -->
+  <!-- </div>  -->
+  <!-- <div class="col-md-4 col-sm-4" style="display: inline-block;"> -->
+  <!-- <button (click)="toggleDate()" class="btn-solid-reg mr-2" style=" display:inline-block;
+              float:none;
+              
+              margin-left:16rem"> 
+                Date Range Filter -->
+  <!-- </button> -->
+  <!-- </div>  -->
+  <!-- <button style="margin-top: 3px;" type="button" class="btn-solid-reg">search</button> -->
+
+  <!-- <input type="search" class="form-control" id="yInput" placeholder="Search"> -->
+
+  <!-- </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- Angular Material -->
+  <div *ngIf="toggleDataRange" style="margin-top: 1rem;">
+    <!-- <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field> -->
+    <div class="container">
+      <br />
+      <form class="form-group" [formGroup]="filterForm">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class=" col-md-6">
+            <span class="input">
+              <label for="input" style="color: #fff">From Date</label>
+              <input type="date" class="form-control" #fromDate placeholder="From Date" formControlName="fromDate" />
+            </span>
+            <!-- <input class="from-control" type="date" #fromDate placeholder="From Date" formControlName="fromDate"> -->
+            <!-- </div>
+        &nbsp;
+        <div class="date-block__list col-md-6" style="margin-left: 17rem;background-color: crimson;"> -->
+            &nbsp;
+            <span class="input">
+              <label for="input" style="color: #fff">To Date</label>
+              <input type="date" class="form-control" #toDate placeholder="To Date" formControlName="toDate" />
+            </span>
+            <!-- <input type="date" #toDate placeholder="To Date" formControlName="toDate"> -->
+          </div>
+          <div class="col-md-3"></div>
+          <!-- &nbsp; -->
+        </div>
+        <div class="contianer" style=" height: 50px;
+      position: relative;
+       ">
+          <div style="margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);">
+            <button style="display:inline-block; margin-top: 
+        1rem;margin-bottom: 1rem;margin-right: 1rem;
+      position: relative;" class="btn-solid-reg" (click)="applyFilter()">
+              Filter
+            </button>
+          </div>
+        </div>
+       
+      </form>
+     
+      <div class="limiter">
+        
+        <div class="container-table100">
+         
+          <div class="wrap-table100">
+            <!-- <div style="margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);">
+               
+                <button style="display:inline-block; margin-top: 
+                1rem;margin-bottom: 1rem;margin-right: 1rem;
+              position: relative;" class="btn-solid-reg" (click)="exporter.exportTable('csv')">
+                  Export
+                </button>
+              </div> -->
+              <button style="display:inline-block; margin-top: 
+              1rem;margin-bottom: 1rem;margin-right: 1rem;
+            position: relative;" class="btn-solid-reg" (click)="exporter.exportTable('csv')">
+                Export
+              </button>
+            <div class="table100">
+              <table mat-table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter"
+                class="mat-elevation-z8">
+                <ng-container matColumnDef="barcodeno">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Barcode No.
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.barcodeno }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="docType">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Doc Type
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.docType }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="lanno">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Lan No.
+                  </th>
+                  <td mat-cell *matCellDef="let element">{{ element.lanno }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="inwardDate">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Inward Date
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.inwardDate }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="location">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Location
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.location }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="remarksInward">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Inward Remarks
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.remarksInward }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="outDate">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Out Date
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.outDate }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="requestedBy">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Requested By
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.requestedBy }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="retrievalType">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Retrieval Type
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.retrievalType }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="subRetrivalType">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Sub Retrieval Type
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.subRetrivalType }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="approvalType">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Approval Type
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.approvalType }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="remarkOutward">
+                  <th style="background-color: #00bfd8; color: #fff" mat-header-cell *matHeaderCellDef>
+                    Outward Remarks
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let parcel of element.log">
+                      <div class="parcel">
+                        <tr>
+                          <td>{{ parcel.remarkOutward }}</td>
+                        </tr>
+                      </div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table>
+                             <div id="export"></div>
+              <!-- <button class="btn-solid-reg" (click)="exporter.exportTable('csv')">
+                Export
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap -->
+  <div *ngIf="togglenorm" style="margin-top: 1rem;">
+    <div class="container-fluid mt-4">
+      <div class="row justify-content-center">
+        <div class="col-sm-9">
+          <div class="row justify-content-center">
+
+            <!-- <div class="input-group mysearch mb-2" style="background-color: darkred;"> -->
+            <!-- <div class="input-group-prepend" style="background-color: crimson;">
+                       <div class="input-group-text"><label  class="input fa fa-search">
+                      </label> 
+                      </div> 
+                     </div> -->
+
+            <div class="col-sm-6" style="margin-bottom: 1rem;">
+              <!-- <label  class=" fa fa-search"></label> -->
+              <span class="input">
+                <input type="search" class="form-control" style="border: 1px solid #00bfd8" id="yInput"
+                  placeholder="Search" />
+              </span>
+
+              <!-- <button style="margin-top: 3px;" type="button" class="btn-solid-reg">search</button> -->
+
+              <!-- <input type="search" class="form-control" id="yInput" placeholder="Search"> -->
+
+            </div>
+        
+          </div>
+         
+        </div>
+        
+      </div>
+
+      
+    </div>
+   
+    <div class="row">
+      
+      <div class="limiter">
+        
+        <div class="container-table100">
+         
+          <div class="wrap-table100">
+            <!-- <div style="margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);">
+           
+           
+            <button style="display:inline-block; margin-top: 
+            1rem;margin-bottom: 1rem;margin-right: 1rem;
+          position: relative;" class="btn-solid-reg" type="button" (click)="exportElmToExcel()">
+              Export
+            </button>
+          </div> -->
+          <button style="display:inline-block; margin-top: 
+            1rem;margin-bottom: 1rem;margin-right: 1rem;
+          position: relative;" class="btn-solid-reg" type="button" (click)="exportElmToExcel()">
+              Export
+            </button>
+            <div class="table100">
+              <table class="table" #userTable id="myTable">
+                <!---->
+                <thead style="color: #fff;">
+                  <tr>
+                    <th scope="col">Barcode No</th>
+                    <th scope="col">Lan No</th>
+                    <th scope="col">Doc Type</th>
+                    <th scope="col">Inward Date</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Inward Remarks</th>
+                    <th scope="col">Out Date</th>
+                    <th scope="col">Requested By</th>
+                    <th scope="col">Retrieval Type</th>
+                    <th scope="col">SubRetrieval Type</th>
+                    <th scope="col">Approved Type</th>
+                    <th scope="col">Outward Remarks</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let get of getAlls; let i = index">
+                    <th scope="row">
+                      <div data-toggle="modal" data-target="#searchModal" (click)="loadData(get?.payload?.doc?.id, get?.payload?.doc?.data()?.lanno,
+                      get?.payload?.doc?.data()?.docType)">
+                        {{get?.payload?.doc?.id}}
+                      </div>
+                    </th>
+                    <td>{{get?.payload?.doc?.data()?.lanno}}</td>
+                    <td>{{get?.payload?.doc?.data()?.docType}}</td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                        <li>{{g?.inwardDate | date:'dd-MM-yyyy'}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                        <li>{{g?.location}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                        <li>{{g?.remarksInward}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1)">
+                        <li>{{g?.outDate | date:'dd-MM-yyyy'}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                        <li>{{g?.requestedBy}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                        <li>{{g?.retrievalType}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                        <li>{{g?.subRetrivalType}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                        <li>{{g?.approvalType}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                        <li>{{g?.remarkOutward}}</li>
+                      </ul>
+                    </td>
+
+                    <td>
+                      <ul>
+                        <li><button class="btn-solid-reg btn-sm" (click)="deleteData(get.payload.doc.id)">
+                            <i class="fas fa-trash-alt"></i>
+                          </button></li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Show Logs Modal -->
+    <div class="modal fade overflow-scroll" id="searchModal" tabindex="-1" role="dialog"
+      aria-labelledby="searchModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="searchModalLabel">Logs</h3>
+            <button type="button" class="btn-solid-reg close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body overflow-scroll">
+            <div class="table-responsive">
+              <div class="container-table100">
+                <div class="wrap-table100">
+                  <div class="table100">
+                    <table class="mytable table-bordered">
+                      <thead style="color:#fff">
+                        <tr>
+                          <th>#</th>
+                          <th>Inward Date</th>
+                          <th>Location</th>
+                          <th>Inward Remarks</th>
+                          <th>Type</th>
+                          <th>Out Date</th>
+                          <th>Requested By</th>
+                          <th>Retrieval Type</th>
+                          <th>SubRetrieval Type</th>
+                          <th>Approved Type</th>
+                          <th>Outward Remarks</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                          <th >Approved Pdf</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let getIdata of getIDatas">
+                        <tr class="mytd" *ngFor="let gd of getIdata?.payload?.data()?.log; let i = index">
+                          <th scope="row">
+                            <ul>
+                              <li>{{i+1}}</li>
+                            </ul>
+                          </th>
+                          <ng-template #other_content>-</ng-template>
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.inwardDate; else other_content">{{gd?.inwardDate | date:'dd-MM-yyyy'}}</li>
+                            </ul>
+                          </td>
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.location; else other_content">{{gd?.location}}</li>
+                            </ul>
+                          </td>
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.remarksInward; else other_content">{{gd?.remarksInward}}</li>
+                            </ul>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>{{gd?.type}}</li>
+                            </ul>
+                          </td>
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.outDate; else other_content">{{gd?.outDate | date:'dd-MM-yyyy'}}</li>
+                            </ul>
+                          </td>
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.requestedBy; else other_content">{{gd?.requestedBy}}</li>
+                            </ul>
+                          </td>
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.retrievalType; else other_content">{{gd?.retrievalType}}</li>
+                            </ul>
+                          </td>
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.subRetrivalType; else other_content">{{gd?.subRetrivalType}}</li>
+                            </ul>
+                          </td>
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.approvalType; else other_content">{{gd?.approvalType}}</li>
+                            </ul>
+                          </td>
+
+                          <td>
+                            <ul>
+                              <li *ngIf="gd?.remarkOutward; else other_content">{{gd?.remarkOutward}}</li>
+                            </ul>
+                          </td>
+                          
+                          <td>
+                            <button class="btn-solid-reg btn-sm"
+                              *ngIf="i >= getIdata?.payload?.data()?.log.length - 1 && gd?.type!='pending' "
+                              data-toggle="modal" data-target="#editLogModal" (click)="editLogModal(i, gd.type)">
+                              edit
+                            </button>
+                          </td>
+                          <td>
+                            <button class="btn-solid-reg btn-sm"
+                              *ngIf="(i >= getIdata?.payload?.data()?.log.length - 1 && i >= 1)"
+                              (click)="deleteLog(i, gd.type, getIdata?.payload?.id)">
+                              delete
+                            </button>
+                          </td>
+                         
+                          <td ><!--[hidden]="!pdfStatus"-->
+                            <button *ngIf="i >= getIdata?.payload?.data()?.log.length - 1 &&gd?.type=='outward'"  class="btn-solid-reg btn-sm" [hidden]="gd.fileurl === null ? true : null" (click)="pdfData(gd.fileurl)">
+                                  pdf
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <!-- <tbody>
+              <tr *ngFor="let get of test; let i = index">
+                <td>{{i+1}}</td>
+                <td><input type="text" name="editinwardDate{{i}}" id="editinwardDate{{i}}"
+                    value="{{get.inwardDate}}">
+                </td>
+                <td><input type="text" name="editlocation{{i}}" id="editlocation{{i}}" value="{{get.location}}">
+                </td>
+                <td><input type="text" name="editremarksInward{{i}}" id="editremarksInward{{i}}"
+                    value="{{get.remarksInward}}">
+                </td>
+                <td>{{get.type}}</td>
+                <td><input type="text" name="editoutDate{{i}}" id="editoutDate{{i}}" value="{{get.outDate}}"></td>
+                <td><input type="text" name="editrequestedBy{{i}}" id="editrequestedBy{{i}}"
+                    value="{{get.requestedBy}}">
+                </td>
+                <td><input type="text" name="editretrievalType{{i}}" id="editretrievalType{{i}}"
+                    value="{{get.retrievalType}}">
+                </td>
+                <td><input type="text" name="editapprovalType{{i}}" id="editapprovalType{{i}}"
+                    value="{{get.approvalType}}">
+                </td>
+                <td><input type="text" name="editremarkOutward{{i}}" id="editremarkOutward{{i}}"
+                    value="{{get.remarkOutward}}">
+                </td>
+                <td>
+                  <button class="btn btn-sm">
+                    <mat-icon (click)="editIndex(i, get.type)">edit</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody> -->
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closeModal" class="btn-solid-reg" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Show Logs Modal -->
+    <!-- <div class="row mt-2">
+      <button class="btn-solid-reg" type="button" (click)="exportElmToExcel()">
+        Export
+      </button>
+
+    </div> -->
+    <!-- End Show Logs Modal -->
+    <!-- Edit log Modal -->
+    <div class="modal fade" id="editLogModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Log</h5>
+            <button type="button" class="btn-solid-reg close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body overflow-scroll">
+            <div *ngIf="editLogToggleType">
+              <div class="form-group">
+                <label>Inward Date</label>
+                <input type="date" class="form-control col-sm-2" id="editinwardDate" value="{{ editLogInwardDate }}" />
+              </div>
+              <div class="form-group">
+                <label>Location</label>
+                <input type="text" class="form-control" id="editlocation" value="{{ editLogLocation }}" />
+              </div>
+              <div class="form-group">
+                <label>Inward Remarks</label>
+                <input type="text" class="form-control" id="editremarksInward" value="{{ editLogInwardRemarks }}" />
+              </div>
+            </div>
+
+            <div *ngIf="!editLogToggleType">
+              <div class="form-group">
+                <label>OutDate</label>
+                <span class="input">
+                  <input type="date" class="form-control " id="editoutDate" value="{{ editLogOutwardDate }}" />
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Requested By</label>
+                <span class="input">
+                  <input type="text" class="form-control" id="editrequestedBy" value="{{ editLogRequestedBy }}" />
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Retrieval Type</label>
+                <span class="input">
+                  <input type="text" class="form-control" id="editretrievalType" value="{{ editLogRetreivalType }}" />
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Sub Retrieval Type</label>
+                <span class="input">
+                  <input type="text" class="form-control" id="editsubretrievalType"
+                    value="{{ editLogSubRetreivalType }}" />
+                </span>
+              </div>
+              <!-- <div class="form-group">
+                        <label class="col-form-label">Retrieval Type*:</label>
+                        <select id="editretrievalType" value="{{editLogRetreivalType}}" class="custom-select">
+                          <option selected>Select</option>
+                          <option value="temporary">temporary</option>
+                          <option value="permanent">permanent</option>
+                        </select>
+                      </div> -->
+              <!-- <div id="rates">
+                        <input type="radio" id="r1" name="rate" value="Fixed Rate"> Fixed Rate
+                        <input type="radio" id="r2" name="rate" value="Variable Rate"> Variable Rate
+                        <input type="radio" id="r3" name="rate" value="Multi Rate" checked="checked"> Multi Rate
+                      </div> -->
+              <div class="form-group">
+                <label>Approval Type</label>
+                <input type="text" class="form-control" id="editapprovalType" value="{{ editLogApprovalType }}" />
+              </div>
+              <div class="form-group">
+                <label>Outward Remarks</label>
+                <input type="text" class="form-control" id="editremarkOutward" value="{{ editLogOutwardRemarks }}" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-solid-reg" [attr.disabled]="updateLogbtn === false ? '' : null"
+              (click)="editIndexPermission(editLogIndexValue, editLogType)">
+              <i *ngIf="updateLogbtn === false" class="fa fa-spinner fa-spin"></i>
+              Update changes
+            </button>
+            <button type="button" id="closeEditModal" class="btn-solid-reg" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Edit Log Modal -->
+  </div>
+  <br /><br />
+
+  <!-- Scripts -->
+  <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins-->
+
+</div>

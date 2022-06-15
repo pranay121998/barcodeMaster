@@ -1,0 +1,55 @@
+<mat-form-field>
+  <input matInput (keyup)="applySearchFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<!-- <h1>Date Range filter in Date Of Birth Column only</h1> -->
+
+<form class="date-block" [formGroup]="filterForm">
+  <div class="date-block__list">
+    <mat-form-field>
+      <input matInput="fromDate" #fromDate placeholder="From Date" formControlName="fromDate">
+    </mat-form-field>
+  </div>
+  <div class="date-block__list">
+    <mat-form-field>
+      <input matInput="toDate" #toDate placeholder="To Date" formControlName="toDate">
+
+    </mat-form-field>
+  </div>
+  <button mat-button color="primary" class="primary" (click)="applyFilter()">Submit</button>
+</form>
+
+<table #filteredTable mat-table [dataSource]="MyDataSource" class="mat-elevation-z8">
+
+  <!-- For ID -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let post"> {{post.id}} </mat-cell>
+  </ng-container>
+
+  <!-- For User ID -->
+  <ng-container matColumnDef="userId">
+    <mat-header-cell *matHeaderCellDef> User ID </mat-header-cell>
+    <mat-cell *matCellDef="let post"> {{post.userId}} </mat-cell>
+  </ng-container>
+
+  <!-- For Title -->
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+    <mat-cell *matCellDef="let post"> {{post.title}} </mat-cell>
+  </ng-container>
+
+  <!-- For Body -->
+  <ng-container matColumnDef="body">
+    <mat-header-cell *matHeaderCellDef> Body Text </mat-header-cell>
+    <mat-cell *matCellDef="let post"> {{post.body}} </mat-cell>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

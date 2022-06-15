@@ -1,0 +1,215 @@
+<body data-spy="scroll" data-target=".fixed-top">
+	<!-- <title>Evolo - StartUp HTML Landing Page Template</title> -->
+
+	<!-- Styles -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext"
+		rel="stylesheet">
+	<link href="../../assets/css/bootstrap.css" rel="stylesheet">
+	<link href="../../assets/css/fontawesome-all.css" rel="stylesheet">
+	<link href="../../assets/css/swiper.css" rel="stylesheet">
+	<link href="../../assets/css/magnific-popup.css" rel="stylesheet">
+	<link href="../../assets/css/styles.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/style1.css"> -->
+
+	<!-- Favicon  -->
+	<!-- <link rel="icon" href="images/favicon.png"> -->
+	<!-- <ul class="main__menu">
+
+		<li class="list-item" style="margin-left: .5rem; ">
+		  <a href="#" class="widget item--js">
+			<span style="font-size: 20px;">{{title}}</span>
+			<i class="fa fa-upload"> </i>
+		  </a>
+		</li>
+	  </ul> -->
+	<ul class="nav justify-content-center" style="background-color:bisque">
+
+		<li class="nav-item" style="color: #00bfd8;font-size: 18px;">
+			{{title}}
+		</li>
+
+
+	</ul>
+
+	<div style="padding-left: 11rem;margin-top: 20px; position: absolute;top: 0;right: 0">
+		<button class="btn-solid-reg page-scroll" (click)="back()">Back</button>
+	</div>
+
+	<div class="container" style="margin-top: 5rem;">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="exampleFormControlFile1">Approval PDF for Outward:</label>
+					<span class="input">
+						<input type="file" class="form-control" (change)="onFileChanged($event)" accept=".pdf" />
+					</span>
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+							[style.width]="(this.api.uploadProgress| async) + '%'"
+							[attr.aria-valuenow]="(this.api.uploadProgress| async)" aria-valuemin="0"
+							aria-valuemax="100">
+							{{this.api.uploadProgress | async}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 "></div>
+				<div class="form-group col-md-6  ">
+					<label for="span">Bulk Upload:</label>
+					<span class="input">
+						<input type="file" class="file form-control" accept=".csv" (change)="handleFileSelect($event)"
+							#focus id="focus">
+					</span>
+					<div class="container" style="margin-top: 4px;height: 50px;
+					position: relative;
+					">
+						<div style="position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);">
+							<button *ngIf="hideOut" class="btn-solid-reg page-scroll" type="button"
+								(click)="uploadOut()" style="display:inline-block;position: relative;">Upload
+								Outward</button>
+							<!-- </div>
+						<div class="col-md-6 col-sm-12" style="background-color: brown;"> -->
+							<button *ngIf="hideIn" class="btn-solid-reg page-scroll" type="button" (click)="uploadIn()"
+								[attr.disabled]="setIn === false ? '' : null"
+								style="display:inline-block; position: relative;">Upload
+								Inward</button>
+						</div>
+					</div>
+					<div class="container" style="padding-left: .2rem;margin-top: 8px;height: 50px;
+					position: relative;
+					">
+						<div class="" style="margin: 0;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);">
+							<button *ngIf="hideCancel" class="btn-solid-reg page-scroll" type="button"
+								(click)="checkIt()" style="display:inline-block;margin-right: .5rem;
+							  position: relative;">Check</button>
+							<!-- </div>
+						<div class="col-md-4" style="background-color: crimson;"> -->
+							<button *ngIf="refreshBtn" class="btn-solid-reg page-scroll" type="button"
+								(click)="cancel()" style="display:inline-block; position: relative;">Refresh</button>
+							<!-- </div>
+						<div class="col-md-4" style="background-color: darkcyan;"> -->
+							<button *ngIf="hideCancel" class="btn-solid-reg page-scroll" type="button"
+								(click)="cancel()" style="display:inline-block; position: relative;">Cancel</button>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+
+				<!-- <div class="col-md-6" >
+		<div class="form-group">
+		  <label for="exampleFormControlFile1">Approval PDF for Outward:</label>
+		 <span class="input"> 
+		  <input type="file" class="form-control" (change)="onFileChanged($event)" accept=".pdf" />
+		 </span> 
+		  <div class="progress">
+			<div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+			  [style.width]="(this.api.uploadProgress| async) + '%'"
+			  [attr.aria-valuenow]="(this.api.uploadProgress| async)" aria-valuemin="0" aria-valuemax="100">
+			  {{this.api.uploadProgress | async}}</div>
+		  </div>
+		</div>
+	  </div> -->
+				<!-- <button class="mybtn btn-purple mb-4" type="button" (click)="ConvertCSVtoJSON()">Convert CSV to JSON</button> -->
+			</div>
+		</div>
+		<!-- <div class="row" style="padding-left: 1rem;">
+		<div class="col-md-4">
+			<button *ngIf="hideCancel" class="btn-solid-reg page-scroll" type="button" (click)="checkIt()">Check</button>
+		</div>
+		<div class="col-md-4">
+			<button *ngIf="refreshBtn" class="btn-solid-reg page-scroll" type="button" (click)="cancel()">Refresh</button>
+		</div>
+		<div class="col-md-4">
+			<button *ngIf="hideCancel" class="btn-solid-reg page-scroll" type="button" (click)="cancel()">Cancel</button>
+		</div>
+	</div> -->
+
+
+		<div class="limiter">
+			<div class="container-table100">
+				<div class="wrap-table100">
+					<div class="table100">
+						<table>
+							<thead>
+								<tr style="color: #fff;">
+									<th scope="col">Barcode No</th>
+									<th scope="col">Lan No</th>
+									<th scope="col">Doc Type</th>
+									<th scope="col">Inward Date</th>
+									<th scope="col">Location</th>
+									<th scope="col">Inward Remarks</th>
+									<th scope="col">Out Date</th>
+									<th scope="col">Requested By</th>
+									<th scope="col">Retrieval Type</th>
+									<th scope="col">Sub Retrieval Type</th>
+									<th scope="col">Approved Type</th>
+									<th scope="col">Outward Remarks</th>
+									<th scope="col">Type</th>
+									<th scope="col">Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let get of test; let i = index">
+									<th scope="row">{{get.barcode}}</th>
+									<td>{{get.lanno}}</td>
+									<td>{{get.docType}}</td>
+									<td>{{get.inwardDate}}</td>
+									<td>{{get.location}}</td>
+									<td>{{get.remarksInward}}</td>
+									<td>{{get.outDate}}</td>
+									<td>{{get.requestedBy}}</td>
+									<td>{{get.retrievalType}}</td>
+									<td>{{get.subRetrivalType}}</td>
+									<td>{{get.approvalType}}</td>
+									<td>{{get.remarkOutward}}</td>
+									<td>{{get.type}}</td>
+									<td>
+										{{get.status}}
+										<a matTooltip="{{get.info}}">
+											<i class="fa fa-info-circle" aria-hidden="true"></i>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- <div class="row">
+		<a href="https://drive.google.com/uc?export=download&id=1hAV1gFOa01J3xxabaXlPmajlSy64Qo4_" class="mr-2">Inward
+			File Example</a>
+		<a href="https://drive.google.com/uc?export=download&id=1ytXVwN-pmizxliGFrZRBXq23KLzNSNtY" class="mr-2">Outward
+			File Example</a>
+	 <a class="btn-solid-reg page-scroll" href="#request">Back</a> 
+
+	</div>
+	</div> -->
+	<!-- <script src="../../assests/js/jquery.min.js"></script> jQuery for Bootstrap's JavaScript plugins -->
+	<!-- <script src="../../assets/js/popper.min.js"></script> Popper tooltip library for Bootstrap -->
+	<!-- <script src="../../assets/js/bootstrap.min.js"></script> Bootstrap framework -->
+	<!-- <script src="../../assets/js/jquery.easing.min.js"></script> jQuery Easing for smooth scrolling between anchors -->
+	<!-- <script src="../../assets/js/swiper.min.js"></script> Swiper for image and text sliders -->
+	<!-- <script src="../../assets/js/jquery.magnific-popup.js"></script> Magnific Popup for lightboxes -->
+	<!-- <script src="../../assets/js/validator.min.js"></script> Validator.js - Bootstrap plugin that validates forms -->
+	<!-- <script src="../../assets/js/scripts.js"></script> Custom scripts -->
+	<!-- <script src="../../assets/js/main.js"></script> -->
+</body>

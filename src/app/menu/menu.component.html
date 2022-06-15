@@ -1,0 +1,157 @@
+<!-- <body>
+  <div class="h-100 d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <button class="mybtn btn-purple mb-4 btn-block" (click)="generate()" type="button">Generate Barcode</button>
+          </div>
+          <div class="row">
+            <button class="mybtn btn-purple mb-4 btn-block" (click)="single()" type="button">Single Entry</button>
+          </div>
+          <div class="row">
+            <button class="mybtn btn-purple mb-4 btn-block" (click)="bulk()" type="button">Bulk Upload</button>
+          </div>
+          <div class="row">
+            <button class="mybtn btn-purple mb-4 btn-block" (click)="search()" type="button">Search</button>
+          </div>
+          <div class="row">
+            <button class="mybtn btn-purple mb-4 btn-block" (click)="permission()" type="button">Permissions</button>
+          </div>
+          <div class="row">
+            <button class="mybtn btn-purple mb-4 btn-block" (click)="pending()" type="button">Pending</button>
+          </div>
+          <div class="row">
+            <button class="mybtn btn-purple mb-4 btn-block" (click)="recall()" type="button">Recall</button>
+          </div>
+          <div class="row">
+            <button class="mybtn btn-purple btn-block" (click)="logout()" type="button">LogOut</button>
+          </div>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+
+
+    </div>
+  </div>
+</body> -->
+
+<body data-spy="scroll" data-target=".fixed-top">
+  <!-- Navbar -->
+  <ul class="main__menu">
+
+    <li class="list-item" style="margin-left: .5rem; ">
+       <a href="" class="widget item--js"> 
+        <span>{{Email}}</span>
+        <i class="fa fa-user"></i>
+       </a>
+    </li>
+  </ul>
+  <!-- Navbar -->
+  <div id="services" class="cards-1">
+    <div class="container">
+      <!-- end of row -->
+      <div class="row">
+        <div class="col-lg-12">
+
+          <!-- Card -->
+          <!-- <a href="./generateBarcode.html"> -->
+            <div class="card col-lg-4" (click)="generate()">
+              <img class="card-image" src="assets/images/barcodeIcon.png" alt="alternative">
+              <div class="card-body">
+                <h4 class="card-title">Generate Barcode</h4>
+                <!-- <p>Our team of enthusiastic marketers will analyse and evaluate how your company stacks against the closest competitors</p> -->
+              </div>
+            </div>
+          <!-- </a> -->
+          <!-- end of card -->
+
+          <!-- Card -->
+          <!-- <a href="./singleEntry.html"> -->
+            <div class="card col-lg-4" (click)="single()">
+              <img class="card-image" src="assets/images/singleEntry.png" alt="alternative">
+              <div class="card-body">
+                <h4 class="card-title">Single Entry</h4>
+                <!-- <p>Once the market analysis process is completed our staff will search for opportunities that are in reach</p> -->
+              </div>
+            </div>
+          <!-- </a> -->
+          <!-- end of card -->
+
+          <!-- Card -->
+          <!-- <a href="./bulkUpload.html"> -->
+            <div class="card col-lg-4" (click)="bulk()">
+              <img class="card-image" src="assets/images/bulkUpload.png" alt="alternative">
+              <div class="card-body">
+                <h4 class="card-title">Bulk Upload</h4>
+                <!-- <p>With all the information in place you will be presented with an action plan that your company needs to follow</p> -->
+              </div>
+            </div>
+          <!-- </a> -->
+          <!-- end of card -->
+          <!-- Card -->
+          <!-- <a href="./search.html"> -->
+            <div class="card col-lg-4" (click)="search()">
+              <img class="card-image" src="assets/images/searchIcon.png" alt="alternative">
+              <div class="card-body">
+                <h4 class="card-title">Search</h4>
+                <!-- <p>With all the information in place you will be presented with an action plan that your company needs to follow</p> -->
+              </div>
+            </div>
+          <!-- </a> -->
+          <!-- end of card -->
+          <!-- Card -->
+          <!-- <a href="./permissions.html"> -->
+            <div class="card col-lg-4" (click)="permission()">
+              <img class="card-image" src="assets/images/permissions.png" alt="alternative">
+              <div class="card-body">
+                <h4 class="card-title">Permissions</h4>
+                <!-- <p>With all the information in place you will be presented with an action plan that your company needs to follow</p> -->
+              </div>
+            </div>
+            <!-- end of card -->
+            <!-- Card -->
+            <!-- <a href="./pending.html"> -->
+              <div class="card col-lg-4" (click)="pending()">
+                <img class="card-image" src="assets/images/pendingIcon.png" alt="alternative">
+                <div class="card-body">
+                  <h4 class="card-title">Pending</h4>
+                  <!-- <p>With all the information in place you will be presented with an action plan that your company needs to follow</p> -->
+                </div>
+              </div>
+            <!-- </a> -->
+            <!-- end of card -->
+            <!-- Card -->
+            <!-- <a href="recall.html"> -->
+              <div class="card col-lg-4" (click)="recall()">
+                <img class="card-image" src="assets/images/services-icon-3.svg" alt="alternative">
+                <div class="card-body">
+                  <h4 class="card-title">Recall</h4>
+                  <!-- <p>With all the information in place you will be presented with an action plan that your company needs to follow</p> -->
+                </div>
+              </div>
+            <!-- </a> -->
+            <!-- end of card -->
+            <!-- Card -->
+            <div class="card col-lg-4" (click)="logout()">
+              <!-- <img class="card-image" src="assets/images/logoutIcon.png" alt="alternative"> -->
+              <!-- <img class="card-image fa fa-sign-out-alt"> -->
+              <i class="card-image fa fa-sign-out-alt fa-7x" style="color: #00bfd8;"></i> 
+
+              <!-- <i class="fas fa-sign-out" style="color: #00bfe8;"></i> -->
+              <div class="card-body">
+                <h4 class="card-title">Logout</h4>
+                <!-- <p>With all the information in place you will be presented with an action plan that your company needs to follow</p> -->
+              </div>
+            </div>
+            <!-- end of card -->
+        </div> 
+      </div> <!-- end of row -->
+    </div> <!-- end of container -->
+  </div>
+
+  <!-- Scripts -->
+
+</body>

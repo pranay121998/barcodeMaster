@@ -1,0 +1,94 @@
+<body data-spy="scroll" data-target=".fixed-top">
+  <ul class="nav justify-content-center" style="background-color:bisque">
+
+    <li class="nav-item" style="color: #00bfd8;font-size: 18px;">
+      {{title}}
+    </li>
+
+
+  </ul> <br><br>
+  <div style="padding-left: 11rem;margin-top: 20px; position: absolute;top: 0;right: 0">
+    <button class="btn-solid-reg page-scroll" (click)="goBack()">Back</button>
+  </div>
+
+
+  <div class="container-fluid" style="padding-top: 3rem">
+    <div class="row justify-content-center">
+      <!-- <div class="col-sm-6">
+        <div class="form-group">
+          <label>Input Barcode No. to Generate</label>
+          <span class="input">
+            <input type="text" class="form-control col-sm-12" id="generatebarcode" /><br />
+          </span>
+          <div style="margin-top: 4px">
+            <button class="btn-solid-reg page-scroll" (click)="generateBarcode()">
+              Generate Single
+            </button>
+          </div>
+        </div>
+      </div> --><div class=" col-lg-3 col-md-3 col-sm-3" ></div>
+      <div class="col-lg-6 col-md-6 col-sm-6 " style="margin-top: 12px;">
+        <div class="form-group row " style="align-items: center;">
+          <label class="filestyle">Bulk Upload Barcode Numbers:</label>
+          <!-- <input type="file" accept=".csv" (change)="handleFileSelect($event)"> -->
+          <!-- <div class="col-sm-8 " style=" padding-top: 12px;"> -->
+          <span class="input">
+            <input type="file" accept=".csv" class="form-control" (change)="handleFileSelect($event)" />
+          </span>
+          <!-- </div> -->
+          <!-- <div class="container"> -->
+           
+          </div>
+        <!-- </div> -->
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3" ></div>
+    </div>
+    <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="container" style="height: 50px;
+      position: relative;
+      "><!---ms-transform: translateY(-50%);-->
+        <!--position: absolute;left:0; margin-top: 3.2rem;background-color: black;-->
+        <div style="  margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);">
+        <button class="btn-solid-reg page-scroll" style="display:inline-block; position: relative;margin-right:.5rem;" (click)="generateMultiple()"><!--top: 50%;
+      right:50%;-->
+          Generate Multiple
+        </button><!--transform: translate(50%,50%);background-color: black;-->
+        <!-- <div style="position: grid; width:50%;margin-left:15rem"> -->
+        <button id="btn-pdf" style="display: inline-block; position: relative;" class="btn-solid-reg page-scroll"
+          (click)="getPDF()">Download PDF</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- <div class="row" id="pdfSingle">
+       <div class="col-sm-4">
+        <canvas id="barcode1"></canvas>
+      </div>
+      <div class="col-sm-4">
+        <canvas id="barcode2"></canvas>
+      </div>
+      <div class="col-sm-4">
+        <canvas id="barcode3"></canvas>
+      </div>  
+    </div> -->
+
+    <div class="row justify-content-center">
+      <div class="col-sm-3"></div>
+
+      <div class=" col-sm-6 pad-left" id="pdfSink">
+        <div *ngFor="let get of multiple; let i = index">
+          <canvas id="csvbarcode{{i}}"></canvas>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+
+    </div>
+  </div>
+
+</body>

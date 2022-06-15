@@ -1,0 +1,768 @@
+<body data-spy="scroll" data-target=".fixed-top">
+  <!-- <nav class="navbar navbar-dark" > -->
+  <ul class="nav justify-content-center" style="background-color: bisque">
+    <li class="nav-item" style="color: #00bfd8; font-size: 18px">
+      Single Entry
+    </li>
+
+    <!-- <li class="nav-item" style="color: #00bfd8;font-size: 15px;">
+        Bulk Upload
+      </li>
+      <li class="nav-item" style="color: #00bfd8;font-size: 15px;">
+        Search
+      </li>
+      <li class="nav-item" style="color: #00bfd8;font-size: 15px;">
+        Permission      </li>
+      <li class="nav-item" style="color: #00bfd8;font-size: 15px;">
+        Pending
+      </li>
+      <li class="nav-item" style="color: #00bfd8;font-size: 15px;">
+        Recall
+      </li>
+      <li class="nav-item" style="color: #00bfd8;font-size: 15px;">
+        Logout -->
+    <!-- </li> -->
+  </ul>
+  <!-- Navbar content -->
+  <!-- </nav> -->
+  <br /><br />
+  <div
+    class=""
+    style="
+      padding-left: 11rem;
+      margin-top: 20px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    "
+  >
+    <button class="btn-solid-reg page-scroll" type="button" (click)="back()">
+      Back
+    </button>
+  </div>
+
+  <form
+    [formGroup]="barcode"
+    class="pt-2"
+    style="padding: 1rem; margin-top: 2rem"
+  >
+    <div class="row">
+      <!-- <div class="col-md-12"> -->
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4" style="padding-top: 16px">
+        <!-- <div class="form-group row"> -->
+        <label class="" for="input">Barcode No*</label>
+        <span class="input" style="margin-bottom: 2rem">
+          <input
+            type="text"
+            class="form-control"
+            id="barcode"
+            (change)="go()"
+            [formControl]="barcodeno"
+            #barcodeFocus
+          />
+        </span>
+      </div>
+      <!-- </div> -->
+      <div class="col-md-4" style="padding-top: 1.2rem; padding-left: 2rem">
+        <div class="form-group row">
+          <div>
+            <button
+              class="btn-solid-reg"
+              (click)="go()"
+              type="button"
+              style="margin-top: 1.2rem"
+            >
+              Go
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+    <!-- <div class="col-md-6" style=" background-color: blueviolet; padding-top: 12px;">
+        <div class="form-group row">
+        <div  >
+          <button class="btn-solid-reg" (click)="go()" type="button">Go</button>
+        </div>   
+      </div>
+      </div> -->
+    <!-- </div> -->
+    <br /><br />
+    <!-- <div class="row pt-2"> -->
+    <div class="align-content-center" id="inward" style="display: inherit">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Lan Number*:</label>
+            <div class="col-sm-7">
+              <span class="input">
+                <input
+                  type="text"
+                  [formControl]="lanno"
+                  [(ngModel)]="this.ngLan"
+                  class="form-control"
+                  [attr.disabled]="myExistence === true ? '' : null"
+                />
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Inward Date*:</label>
+            <div class="col-sm-7">
+              <span class="input">
+                <input
+                  type="date"
+                  [(ngModel)]="this.ngInDate"
+                  [formControl]="inwardDate"
+                  class="form-control"
+                  [attr.disabled]="setIn === true ? '' : null"
+                  [attr.max]="this.today"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">DocType*:</label>
+            <div class="col-sm-8">
+              <span class="input">
+                <select
+                  formControlName="docType"
+                  [(ngModel)]="this.ngDoc"
+                  class="custom-select"
+                  [attr.disabled]="myExistence === true ? '' : null"
+                >
+                  <option selected>Select</option>
+                  <option value="File">File</option>
+                  <option value="Property Doc">Property Doc</option>
+                  <option value="PDC">PDC</option>
+                  <option value="others">others</option>
+                </select>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Location*:</label>
+            <div class="col-sm-8">
+              <span class="input">
+                <input
+                  type="text"
+                  [formControl]="location"
+                  [(ngModel)]="this.ngLoc"
+                  class="form-control"
+                  [attr.disabled]="setIn === true ? '' : null"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Inward Remarks:</label>
+            <div class="col-sm-7">
+              <span class="input">
+                <textarea
+                  cols="20"
+                  [(ngModel)]="this.ngReIn"
+                  [formControl]="remarksInward"
+                  type="text"
+                  class="form-control align-left"
+                  [attr.disabled]="setIn === true ? '' : null"
+                ></textarea>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div (click)="onClick()" id="linkOutward">Go to Outward</div>
+      </div>
+    </div>
+    <!-- outward section starts -->
+    <div
+      id="outward"
+      style="display: none; margin-left: 1rem; margin-right: 1rem"
+    >
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Out Date*:</label>
+            <div class="col-sm-7 text-pl">
+              <span class="input">
+                <input
+                  type="date"
+                  [(ngModel)]="this.ngOutDate"
+                  [formControl]="outDate"
+                  class="form-control"
+                  [attr.disabled]="setOut === true ? '' : null"
+                  [attr.max]="this.today"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-sm-6" style="background-color: palegreen;"> -->
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label" for="exampleFormControlFile1"
+              >Approval*:</label
+            >
+            <div class="col-sm-7">
+              <span class="input">
+                <input
+                  type="file"
+                  class="form-control"
+                  (change)="onFileChanged($event)"
+                  accept=".pdf"
+                  [attr.disabled]="setOut === true ? '' : null"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                  [style.width]="(this.api.uploadProgress| async) + '%'"
+                  [attr.aria-valuenow]="(this.api.uploadProgress| async)" aria-valuemin="0" aria-valuemax="100">
+                  {{this.api.uploadProgress | async}}
+                </div>
+              </div> -->
+        </div>
+        <!-- </div> -->
+      </div>
+      <!-- </div> -->
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Retrieval Type*:</label>
+            <div class="col-sm-7 text-ml">
+              <span class="input">
+                <select
+                  [(ngModel)]="this.ngRetType"
+                  [formControl]="retrievalType"
+                  class="custom-select"
+                  [attr.disabled]="setOut === true ? '' : null"
+                >
+                  <option selected>Select</option>
+                  <option value="temporary">temporary</option>
+                  <option value="permanent">permanent</option>
+                </select>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Sub Retrieval Type*:</label>
+            <div class="col-sm-7 text-ml">
+              <span class="input">
+                <select
+                  [(ngModel)]="this.ngSubRetType"
+                  [formControl]="subRetrivalType"
+                  class="custom-select"
+                  [attr.disabled]="setOut === true ? '' : null"
+                >
+                  <option selected>Select</option>
+                  <option value="dispatch to branch">dispatch to branch</option>
+                  <option value="release to customer">
+                    release to customer
+                  </option>
+                  <option value="local H.O.">local H.O.</option>
+                </select>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Requested By*:</label>
+            <div class="col-sm-7 text-pl">
+              <span class="input">
+                <input
+                  type="text"
+                  [(ngModel)]="this.ngReqBy"
+                  [formControl]="requestedBy"
+                  class="form-control"
+                  [attr.disabled]="setOut === true ? '' : null"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Approved By*:</label>
+            <div class="col-sm-7 text-ml">
+              <span class="input">
+                <input
+                  type="text"
+                  [(ngModel)]="this.ngApType"
+                  [formControl]="approvalType"
+                  class="form-control"
+                  [attr.disabled]="setOut === true ? '' : null"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Outward Remarks*:</label>
+            <div class="col-sm-7" style="padding-left: 1rem">
+              <span class="input">
+                <textarea
+                  [(ngModel)]="this.ngReOut"
+                  [formControl]="remarkOutward"
+                  type="text"
+                  class="form-control textarea-ml"
+                  [attr.disabled]="setOut === true ? '' : null"
+                ></textarea>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div (click)="onClick()" id="linkInward">Go To Inward</div>
+    </div>
+    <!-- outward section closes -->
+    <!-- <div class="col-md-2" style="background-color: crimson;"></div> -->
+    <div class="">
+      <div class="container-fluid" style="height: 50px; position: relative">
+        <div
+          class=""
+          style="
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          "
+        >
+          <button
+            class="btn-solid-reg page-scroll"
+            style="
+              display: inline-block;
+              margin-top: 1rem;
+              margin-bottom: 1rem;
+              margin-right: 1rem;
+              position: relative;
+            "
+            type="button"
+            (click)="add()"
+          >
+            Save
+          </button>
+          <!-- </div>
+        <div class="" style="margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);"> -->
+          <!-- <span style="padding-left: 2rem"> -->
+          <button
+            class="btn-solid-reg page-scroll"
+            style="
+              display: inline-block;
+              margin-top: 1rem;
+              margin-bottom: 1rem;
+              position: relative;
+            "
+            (click)="reset()"
+            type="button"
+          >
+            Cancel
+          </button>
+          <!-- </span> -->
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-2" style="background-color: crimson;"></div> -->
+  </form>
+
+  <!-- Table-->
+  <!-- search section starts -->
+  <div class="row">
+    <!-- <div class="col-md-8"> -->
+    <!-- <div class="row"> -->
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <!-- <label  class=" fa fa-search"></label> -->
+      <span class="input">
+        <input
+          type="text"
+          class="form-control"
+          ([ngModel])="(searchterm)"
+          (change)="search($event)"
+          placeholder="Search Barcode"
+        />
+      </span>
+
+      <!-- <button style="margin-top: 3px;" type="button" class="btn-solid-reg">search</button> -->
+
+      <!-- <input type="search" class="form-control" id="yInput" placeholder="Search"> -->
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+  <!-- </div> -->
+  <!-- </div> -->
+
+  <!-- </div> -->
+
+  <!-- search section closes -->
+
+  <div class="table-responsive">
+    <div class="container">
+      <div class="row">
+        <!-- <button class="mybtn btn-purple mb-4" type="button" (click)="ConvertCSVtoJSON()">Convert CSV to JSON</button> -->
+
+        <hr />
+      </div>
+
+      <!-- < <div class="row">
+                  <a href="https://drive.google.com/uc?export=download&id=1hAV1gFOa01J3xxabaXlPmajlSy64Qo4_" class="mr-2">Inward
+                    File Example</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1ytXVwN-pmizxliGFrZRBXq23KLzNSNtY" class="mr-2">Outward
+                    File Example</a>
+                  <button class="btn-solid-reg page-scroll" (click)="back()">Back</button> -->
+      <!-- <a class="btn-solid-reg page-scroll" href="#request">Back</a>
+        
+                </div> -->
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Logs</h5>
+          <button
+            type="button"
+            class="btn-solid-reg close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <div class="container-table100">
+              <div class="wrap-table100">
+                <div class="table100">
+                  <table class="mytable table-bordered">
+                    <thead style="color: #fff">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Inward Date</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Inward Remarks</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Out Date</th>
+                        <th scope="col">Requested By</th>
+                        <th scope="col">Retrieval Type</th>
+                        <th scope="col">Approved Type</th>
+                        <th scope="col">Outward Remarks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="mytd">
+                        <th *ngFor="let getIdata of getIDatas">
+                          <ul
+                            *ngFor="
+                              let gd of getIdata?.payload?.data()?.log;
+                              let i = index
+                            "
+                          >
+                            <li>{{ i + 1 }}</li>
+                          </ul>
+                        </th>
+                        <ng-template #other_content>-</ng-template>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li *ngIf="gd?.inwardDate; else other_content">
+                              {{ gd?.inwardDate | date: "dd-MM-yyyy" }}
+                            </li>
+                          </ul>
+                        </td>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li *ngIf="gd?.location; else other_content">
+                              {{ gd?.location }}
+                            </li>
+                          </ul>
+                        </td>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li *ngIf="gd?.remarksInward; else other_content">
+                              {{ gd?.remarksInward }}
+                            </li>
+                          </ul>
+                        </td>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li>{{ gd?.type }}</li>
+                          </ul>
+                        </td>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li *ngIf="gd?.approvalType; else other_content">
+                              {{ gd?.approvalType }}
+                            </li>
+                          </ul>
+                        </td>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li *ngIf="gd?.outDate; else other_content">
+                              {{ gd?.outDate | date: "dd-MM-yyyy" }}
+                            </li>
+                          </ul>
+                        </td>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li *ngIf="gd?.retrievalType; else other_content">
+                              {{ gd?.retrievalType }}
+                            </li>
+                          </ul>
+                        </td>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li *ngIf="gd?.requestedBy; else other_content">
+                              {{ gd?.requestedBy }}
+                            </li>
+                          </ul>
+                        </td>
+                        <td *ngFor="let getIdata of getIDatas">
+                          <ul *ngFor="let gd of getIdata?.payload?.data()?.log">
+                            <li *ngIf="gd?.remarkOutward; else other_content">
+                              {{ gd?.remarkOutward }}
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-solid-reg" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- <ul *ngFor="let club of clubs">
+      <li>{{club.docType}}</li>
+                        <li>{{club.lanno}}</li>
+                        </ul>
+                        <div *ngIf="clubs?.length < 1">
+                          <p>Sorry, No Barcodes Found!</p>
+                        </div> -->
+    <div class="modal-body">
+      <div class="table-responsive">
+        <div class="container-table100">
+          <div class="wrap-table100">
+            <div class="table100">
+              <table class="table table-striped scroll-hide" #userTable>
+                <thead style="color: #fff">
+                  <tr>
+                    <th scope="col">Barcode No</th>
+                    <th scope="col">Lan No</th>
+                    <th scope="col">Doc Type</th>
+                    <th scope="col">Inward Date</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Inward Remarks</th>
+                    <th scope="col">Out Date</th>
+                    <th scope="col">Requested By</th>
+                    <th scope="col">Retrieval Type</th>
+                    <th scope="col">Approved Type</th>
+                    <th scope="col">Outward Remarks</th>
+                    <th scope="col">Approved Pdf</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    Search Results:
+                  </tr>
+                  <tr *ngFor="let club of clubs" class="searchR">
+                    <th scope="row">
+                      <div
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                        (click)="loadData(club?.barcodeno)"
+                      >
+                        {{ club?.barcodeno }}
+                      </div>
+                    </th>
+                    <td>{{ club?.lanno }}</td>
+                    <td>{{ club?.docType }}</td>
+                    <td>
+                      <ul
+                        *ngFor="
+                          let c of club?.log | slice: club?.log.length - 1
+                        "
+                      >
+                        <li>{{ c?.inwardDate | date: "dd-MM-yyyy" }}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="
+                          let c of club?.log | slice: club?.log.length - 1
+                        "
+                      >
+                        <li>{{ c?.location }}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="
+                          let c of club?.log | slice: club?.log.length - 1
+                        "
+                      >
+                        <li>{{ c?.remarksInward }}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="
+                          let c of club?.log | slice: club?.log.length - 1
+                        "
+                      >
+                        <li>{{ c?.outDate | date: "dd-MM-yyyy" }}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="
+                          let c of club?.log | slice: club?.log.length - 1
+                        "
+                      >
+                        <li>{{ c?.requestedBy }}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="
+                          let c of club?.log | slice: club?.log.length - 1
+                        "
+                      >
+                        <li>{{ c?.retrievalType }}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                        *ngFor="
+                          let c of club?.log | slice: club?.log.length - 1
+                        "
+                      >
+                        <li>{{ c?.approvalType }}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul *ngFor="let c of (club?.log | slice: club?.log.length - 1 )">
+                        <li>{{c?.remarkOutward}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul
+                      *ngFor="
+                      let c of club?.log | slice: club?.log.length - 1; index as i;"><!---->
+                        <li><button *ngIf="c.type==='outward'" [disabled]="c.fileurl === null ? true : null" class="btn-solid-reg btn-sm" (click)="pdfData(c.fileurl)">
+                          pdf
+                    </button></li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- <tbody *ngIf="searchOn">
+          <tr *ngFor="let get of getAlls; let i = index">
+            <th scope="row">
+              <div data-toggle="modal" data-target="#exampleModal" (click)="loadData(get?.payload?.doc?.id)">
+                {{get?.payload?.doc?.id}}
+              </div>
+            </th>
+            <td>{{get?.payload?.doc?.data()?.lanno}}</td>
+            <td>{{get?.payload?.doc?.data()?.docType}}</td>
+            <td>
+              <ul
+                *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                <li>{{g?.inwardDate}}</li>
+              </ul>
+            </td>
+            <td>
+              <ul
+                *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                <li>{{g?.location}}</li>
+              </ul>
+            </td>
+            <td>
+              <ul
+                *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                <li>{{g?.remarksInward}}</li>
+              </ul>
+            </td>
+            <td>
+              <ul
+                *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1)">
+                <li>{{g?.outDate}}</li>
+              </ul>
+            </td>
+            <td>
+              <ul
+                *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                <li>{{g?.requestedBy}}</li>
+              </ul>
+            </td>
+            <td>
+              <ul
+                *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                <li>{{g?.retrievalType}}</li>
+              </ul>
+            </td>
+            <td>
+              <ul
+                *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                <li>{{g?.approvalType}}</li>
+              </ul>
+            </td>
+            <td>
+              <ul
+                *ngFor="let g of (get?.payload?.doc?.data()?.log | slice: get?.payload?.doc?.data()?.log.length - 1 )">
+                <li>{{g?.remarkOutward}}</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody> -->
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+</body>

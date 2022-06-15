@@ -1,0 +1,145 @@
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+	<ul class="nav justify-content-center" style="background-color:bisque" >
+ 
+		<li class="nav-item" style="color: #00bfd8;font-size: 18px;">
+		  {{title}}
+		</li>
+	   
+		
+	  </ul> 
+	  <div style="margin-top:20px;margin-right:  .1rem; position: absolute;top: 0;right: 0">
+		<button class="btn-solid-reg page-scroll" (click)="back()">Back</button>
+	</div><br><br><br><br>
+	<div class="container">
+		
+		
+		<div class="row "  >
+			<div class="col-md-3 col-sm-12"></div>
+			<div class="col-md-6 col-sm-12 " >
+				<!-- <div class="form-group"  > -->
+					<!-- <div class="col-md-4" > -->
+						<label class="" for="span">Pending Upload:</label>
+					<!-- </div> -->
+					<!-- <div class="col-md-5" style="position:absolute;top:0;right: 0;margin-right: 25rem; "> -->
+						<span class="input">
+							<input type="file" class="form-control" accept=".csv" (change)="handleFileSelect($event)"
+								#focus id="focus">
+						</span>
+					<!-- </div> -->
+					
+				<!-- </div> -->
+				
+			</div>
+		
+			<div class="col-md-3 col-sm-12" ></div>
+			
+		</div>
+		<div class="container" style="height: 50px;
+		position: relative;
+		">
+			<div style=" margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);">
+		
+			<button *ngIf="hideIn" class="btn-solid-reg " type="button" (click)="uploadIn()">Upload
+				Pending</button>
+		</div>
+	</div>
+	<!-- </div> -->
+		<!-- <button class="mybtn btn-purple mb-4" type="button" (click)="ConvertCSVtoJSON()">Convert CSV to JSON</button> -->
+		<div class="row" >
+			<div class="col-md-12 col-sm-12"></div>
+			<!-- <div class="col-md-6" style="background-color: crimson;"> -->
+				<div class="container col-md-12 col-sm-12" style="height: 50px;
+				position: relative;
+				">
+					<div style=" margin: 0;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);">					<!-- <div class="col-md-4" style="background-color: lightblue;"> -->
+						<button *ngIf="hideCancel" class="btn-solid-reg " type="button"
+							(click)="checkIt()" style="display:inline-block; position: relative;margin-right:.5rem;">Check</button>
+					<!-- </div> -->
+					<!-- <div class="col-md-4" style="background-color: indigo;"> -->
+						<button *ngIf="refreshBtn" class="btn-solid-reg " type="button"
+							(click)="cancel()"  style="display:inline-block; position: relative;margin-right:.5rem;">Refresh</button>
+					<!-- </div> -->
+					<!-- <div class="col-md-4" style="background-color:lightslategrey"> -->
+						<button *ngIf="hideCancel" class="btn-solid-reg" type="button"
+							(click)="cancel() " style="display:inline-block; position: relative;">Cancel</button>
+					<!-- </div> -->
+					
+				</div>
+			</div>
+
+			<!-- </div> -->
+			<div class="col-md-12 col-sm-12"></div>
+
+		</div><br><br>
+
+    
+    <div class="limiter">
+      <div class="container-table100">
+        <div class="wrap-table100">
+          <div class="table100">
+            <table>
+              <thead style="color: #fff;">
+                <tr>
+                  <th scope="col">Barcode No</th>
+                  <th scope="col">Lan No</th>
+                  <th scope="col">Doc Type</th>
+                  <th scope="col">Inward Date</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Inward Remarks</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let get of test; let i = index">
+                  <th scope="row">{{get.barcode}}</th>
+                  <td>{{get.lanno}}</td>
+                  <td>{{get.docType}}</td>
+                  <td>{{get.inwardDate}}</td>
+                  <td>{{get.location}}</td>
+                  <td>{{get.remarksInward}}</td>
+                  <td>{{get.type}}</td>
+                  <td>
+                    {{get.status}}
+                    <a matTooltip="{{get.info}}">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+
+
+	
+
+
+	<!-- </div> -->
+
+
+
+	<div class="row" style="margin-left: 3rem;">
+		<a href="https://drive.google.com/uc?export=download&id=1hAV1gFOa01J3xxabaXlPmajlSy64Qo4_" class="mr-2">Inward
+			File Example</a>
+		<a href="https://drive.google.com/uc?export=download&id=1ytXVwN-pmizxliGFrZRBXq23KLzNSNtY" class="mr-2">Outward
+			File Example</a>
+		<!-- <button class="btn-solid-reg page-scroll" (click)="back()">Back</button> -->
+		<!-- <a class="btn-solid-reg page-scroll" href="#request">Back</a> -->
+
+	</div>
+	<!-- </div> -->
+</body>
